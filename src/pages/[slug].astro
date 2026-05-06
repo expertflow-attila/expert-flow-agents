@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 
 const { agent } = Astro.props as { agent: Agent };
 
-const repoCmd = "gh repo clone attilanagy23/expert-flow-agents";
+const repoCmd = "gh repo clone expertflow-attila/expert-flow-agents";
 const promptId = `prompt-${agent.slug}`;
 const repoId = `repo-${agent.slug}`;
 const termJson = JSON.stringify(agent.terminalScript);
