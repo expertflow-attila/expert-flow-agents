@@ -1,0 +1,194 @@
+{
+  "scout": {
+    "slug": "scout",
+    "name": "Scout",
+    "role": "Felderítő",
+    "order": 1,
+    "tagline": "Magyar vállalkozókat talál,<br>LinkedIn és Google Maps alapján.",
+    "lede": "Apify, LinkedIn és Google Maps integrációval keresi az egyéni szolgáltatásalapú vállalkozókat: ingatlanközvetítőket, ügyvédeket, fogorvosokat, fotográfusokat és további 20+ szakmát. Valós adatokat gyűjt, Supabase-be menti őket, Google Sheetsbe exportálja automatikusan.",
+    "promptExample": "Keress 10 ingatlanost Budapesten LinkedIn alapján, ezután scrapeld le az első 3 weboldalt",
+    "features": [
+      { "title": "Apify LinkedIn keresés", "body": "LinkedIn profilokat talál szakma és hely szerint, valós profil-linkeket nyer ki." },
+      { "title": "Google Maps scrape", "body": "Vállalkozások telefonszámát, weboldalát, értékeléseit gyűjti Maps-ből." },
+      { "title": "Weboldal-elemzés", "body": "Playwright-tal betölti az oldalakat, emaileket, telefonokat és fájdalompontokat azonosít." },
+      { "title": "Batch keresés", "body": "10 foglalkozás × hely kombinációt egyszerre, max 50 lead / keresés." },
+      { "title": "Duplikáció szűrés", "body": "Név és cég alapján ellenőrzi, nem menti kétszer ugyanazt a prospectet." },
+      { "title": "Google Sheets export", "body": "Automatikusan felírja a talált prospecteket a megadott Google Sheetbe." }
+    ],
+    "terminalScript": [
+      { "type": "user", "text": "Keress 5 ingatlanost Budapesten LinkedIn és Maps alapján", "ms": 800 },
+      { "type": "cmd",  "text": "apify_search_linkedin 'ingatlan' 'Hungary' 10           1.2s", "ms": 900 },
+      { "type": "cmd",  "text": "apify_search_maps 'ingatlanközvetítő' 'Budapest' 10     2.1s", "ms": 1100 },
+      { "type": "cmd",  "text": "claude_analyze_prospects [linkedin + maps data]         3.4s", "ms": 1200 },
+      { "type": "cmd",  "text": "save_prospects_supabase 5 new prospects                  0.8s", "ms": 700 },
+      { "type": "cmd",  "text": "sheets_append GOOGLE_SHEET_ID 'Prospects!A:P' 5 rows     1.1s", "ms": 800 },
+      { "type": "out",  "text": "", "ms": 200 },
+      { "type": "out",  "text": "Done! 5 új prospect megtalálva és elmentve.", "ms": 400 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "out",  "text": "✓ Kiss Péter — KP Ingatlan | Budapest", "ms": 300 },
+      { "type": "out",  "text": "✓ Szabó Márta — SM Real Estate | Pest megye", "ms": 300 },
+      { "type": "out",  "text": "✓ Nagy Béla — Béla Ingatlan Kft. | Budapest", "ms": 300 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "done", "text": "Mentve: Google Sheets & Supabase | scout_2026_051", "ms": 200 }
+    ]
+  },
+  "manager": {
+    "slug": "manager",
+    "name": "Manager",
+    "role": "Értékesítési vezető",
+    "order": 2,
+    "tagline": "Pipeline-t követ, prospecteket<br>visz a fázisok közt.",
+    "lede": "Kezel minden potenciális ügyfelet: kívánság-tól ajánlat-ig, ajánlat-tól megnyert-ig követi a prospecteket. Automatikus lead scoring, email kiküldés (Gmail), Cal.com foglalások, ajánlat-generálás és monitoring — minden a Supabase-ben rögzítve.",
+    "promptExample": "Frissítsd Kovács Péter státuszát »interested«-re és készíts személyre szabott ajánlatot az utolsó meeting alapján",
+    "features": [
+      { "title": "Pipeline monitor", "body": "10 státuszbeli szakaszban követi a prospecteket, konverziós arányokat mutat." },
+      { "title": "Lead scoring", "body": "Kontaktadatok, fájdalompontok, szakma-illeszkedés alapján A–F fokozat." },
+      { "title": "Auto email küldés", "body": "Template-ből kimenő, follow-up és outreach emaileket generál Gmaillal." },
+      { "title": "Cal.com foglalás", "body": "Időpontokat foglal az ügyfélnek, nyilvántartja a Google Calendarban." },
+      { "title": "Smart proposal", "body": "Meeting-transzkript alapján HTML ajánlatot generál, személyre szabottan." },
+      { "title": "Revenue előrejelzés", "body": "Deal-érték és konverziós ráta alapján a pipeline értékét becsüli." }
+    ],
+    "terminalScript": [
+      { "type": "user", "text": "Frissítsd Kovács Péter státuszát interested-re", "ms": 800 },
+      { "type": "cmd",  "text": "find_prospect 'Kovács Péter'                                 0.3s", "ms": 500 },
+      { "type": "cmd",  "text": "update_status id=123 'new' → 'interested'                    0.4s", "ms": 600 },
+      { "type": "cmd",  "text": "calculate_lead_score contact=20 pain=18 fit=15               0.2s", "ms": 400 },
+      { "type": "out",  "text": "", "ms": 200 },
+      { "type": "out",  "text": "Done! Kovács Péter státusz frissítve interested-re.", "ms": 400 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "out",  "text": "✓ Státusz: new → interested", "ms": 300 },
+      { "type": "out",  "text": "✓ Lead score: 74/100 (B+) — jó minőségű prospect", "ms": 300 },
+      { "type": "out",  "text": "✓ Email küldésre kész | Kit-tag frissítve", "ms": 300 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "done", "text": "Pipeline frissítve | Supabase & Kit szinkronizálva", "ms": 200 }
+    ]
+  },
+  "operations": {
+    "slug": "operations",
+    "name": "Operations",
+    "role": "Operatív koordinátor",
+    "order": 3,
+    "tagline": "Pipeline-t futtatja, adatokat<br>szinkronizál hét helyre.",
+    "lede": "Heti, napi és havi riportokat küld (pipeline-trend, foglalkozás-bontás, konverziós tölcsér). Google Sheets-szinkron, Drive mappa-automatizáció, PostHog web-analitika, Kit email-statisztika — 500+ prospect adatot tart naprakészen.",
+    "promptExample": "Készíts heti riportot és szinkronizáld az adatokat Google Sheetsbe",
+    "features": [
+      { "title": "Heti / napi / havi riport", "body": "Pipeline-trend, top 8 foglalkozás, legjobb konverziós ráta egy üzenetben." },
+      { "title": "Google Sheets szinkron", "body": "Prospect-lista és pipeline-státusz: 500+ sor frissítése automatikusan." },
+      { "title": "Drive mappa-auto", "body": "Minden aktív ügyfélhez létrehoz mappát + összegző dokumentumot." },
+      { "title": "Konverziós tölcsér", "body": "6 fázison áthaladó prospectek száma + lemorzsolódási pont azonosítása." },
+      { "title": "PostHog analitika", "body": "Oldalmegtekintések, egyedi látogatók, CTA-kattintási arány kimutatása." },
+      { "title": "Kit email-stats", "body": "Feliratkozott emailek, aktív sorozatok, tagek darabszáma." }
+    ],
+    "terminalScript": [
+      { "type": "user", "text": "Készíts heti riportot és szinkronizáld a Sheetset", "ms": 800 },
+      { "type": "cmd",  "text": "get_pipeline_stats last_7_days                               0.5s", "ms": 700 },
+      { "type": "cmd",  "text": "analyze_funnel new→researched→…→won                          0.3s", "ms": 500 },
+      { "type": "cmd",  "text": "sheets_update [500 prospect] + [pipeline breakdown]          2.1s", "ms": 1100 },
+      { "type": "cmd",  "text": "posthog_insights last_7_days views=2341 ctr=4.2%             0.8s", "ms": 900 },
+      { "type": "out",  "text": "", "ms": 200 },
+      { "type": "out",  "text": "Done! Heti riport és szinkronizáció kész.", "ms": 400 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "out",  "text": "✓ 127 új prospect (+18%) | 384 aktív a pipeline-ban", "ms": 300 },
+      { "type": "out",  "text": "✓ Top szakma: ingatlan (38% konverzió)", "ms": 300 },
+      { "type": "out",  "text": "✓ Web: 2341 view, 187 unique, 4.2% CTA", "ms": 300 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "done", "text": "Riport: ~/expert-flow/weekly-report.md | Sheets & Drive sync", "ms": 200 }
+    ]
+  },
+  "optimizer": {
+    "slug": "optimizer",
+    "name": "Optimizer",
+    "role": "Kísérletezésvezető",
+    "order": 4,
+    "tagline": "Öt pipeline-t fut A/B-ra,<br>tanulságokat dokumentál.",
+    "lede": "Email copy, landing page, outreach, lead scoring és ajánlat-template-eket optimalizál automatikus kísérletezéssel. PostHog (web), Kit (email), Stripe (conversion) metrikákat figyel, nyerteseket és tanulságokat rögzít az adatbázisba.",
+    "promptExample": "Futtasd az email copy optimalizálót és mutasd meg az eredményt",
+    "features": [
+      { "title": "Email copy A/B teszt", "body": "Különböző szövegeket Kit-metrikák alapján tesztel és kiválasztja a nyertest." },
+      { "title": "Landing page CRO", "body": "PostHog-konverzió alapján headline, CTA, layout iterálása." },
+      { "title": "Outreach optimalizálás", "body": "Megkeresési válaszarány alapján outreach-template finomítása." },
+      { "title": "Lead scoring tuner", "body": "Scoring-súlyok dinamikus módosítása megnyert / elvesztett deal-ek alapján." },
+      { "title": "Proposal optimizer", "body": "Ajánlat-template módosítása ajánlatfogadási ráta szerint." },
+      { "title": "Tanulságok dokumentálása", "body": "Minden ciklus után AI-val összegez: eredmény + legfőbb tanulság." }
+    ],
+    "terminalScript": [
+      { "type": "user", "text": "Futtasd az email copy optimalizálót", "ms": 800 },
+      { "type": "cmd",  "text": "run_optimization_cycle 'email_copy'                          1.5s", "ms": 1100 },
+      { "type": "cmd",  "text": "kit_metrics variant_a vs variant_b 'click_rate'              2.3s", "ms": 1300 },
+      { "type": "cmd",  "text": "claude_analyze_winner variant_b +12%                         0.6s", "ms": 800 },
+      { "type": "out",  "text": "", "ms": 200 },
+      { "type": "out",  "text": "Done! Email-optimalizációs ciklus lefutott.", "ms": 400 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "out",  "text": "✓ Variant A (»Közvetlen ajánlat«): 4.2% click rate", "ms": 300 },
+      { "type": "out",  "text": "✓ Variant B (»Személyes ötlet«): 4.7% — NYERTES (+12%)", "ms": 300 },
+      { "type": "out",  "text": "✓ Tanulság: a személyre szabott nyitómondat hatékonyabb", "ms": 300 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "done", "text": "Kísérlet #74 lezárva | Tanulságok az auto-research logban", "ms": 200 }
+    ]
+  },
+  "finance": {
+    "slug": "finance",
+    "name": "Finance",
+    "role": "Pénzügyi vezető",
+    "order": 5,
+    "tagline": "Stripe-számlázást kezel,<br>bevételt nyomon követ.",
+    "lede": "Stripe-integrációval számlákat, előfizetéseket, termékeket és kifizetéseket kezel. Dashboard mutatja az egyenleget, havi bevételt, top ügyfeleket. AI-elemzés javaslatot ad árazásra, churn-megelőzésre és revenue-növelésre.",
+    "promptExample": "Készíts számlát Kiss Péternek 250.000 Ft-ról weboldal-készítésért",
+    "features": [
+      { "title": "Stripe-számlázás", "body": "Invoice tételek alapján, automatikus email-küldés, fizetési link generálás." },
+      { "title": "Előfizetés-kezelés", "body": "Havi/éves előfizetés indítás, próbaidőszak, lemondás — MRR tracking." },
+      { "title": "Termék & ár", "body": "Termékek és árak létrehozása, több pénznem és időszak támogatása." },
+      { "title": "Bevétel-dashboard", "body": "30 napi bevétel, top ügyfelek, nyitott / lejárt számlák, aktív előfizetések." },
+      { "title": "Havi bontás", "body": "6 hónapos trend, havi invoice-szám, konverziós fejlődés vizualizálva." },
+      { "title": "AI pénzügyi elemzés", "body": "Stripe-adatokból árazási és churn-megelőzési javaslat." }
+    ],
+    "terminalScript": [
+      { "type": "user", "text": "Mutasd a pénzügyi dashboardot", "ms": 800 },
+      { "type": "cmd",  "text": "stripe_get_revenue_summary last_30_days                      0.7s", "ms": 900 },
+      { "type": "cmd",  "text": "stripe_list_subscriptions status='active'                    1.2s", "ms": 1000 },
+      { "type": "cmd",  "text": "stripe_list_invoices limit=5                                 0.5s", "ms": 700 },
+      { "type": "cmd",  "text": "stripe_get_balance available + pending                       0.4s", "ms": 600 },
+      { "type": "out",  "text": "", "ms": 200 },
+      { "type": "out",  "text": "Done! Pénzügyi dashboard betöltve.", "ms": 400 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "out",  "text": "✓ Egyenleg: 2.847.500 Ft elérhető | 184.200 Ft függőben", "ms": 300 },
+      { "type": "out",  "text": "✓ 30 nap: 4.234.800 Ft (18 számla, 12 fizetett)", "ms": 300 },
+      { "type": "out",  "text": "✓ Aktív előfizetések: 7 — MRR: 89.900 Ft / hó", "ms": 300 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "done", "text": "Dashboard: Stripe API | Top ügyfél: Nagy Attila", "ms": 200 }
+    ]
+  },
+  "orchestrator": {
+    "slug": "orchestrator",
+    "name": "Orchestrator",
+    "role": "Igazgató",
+    "order": 6,
+    "tagline": "Magyar parancsokat értelmez,<br>az öt ügynököt vezényli.",
+    "lede": "Magyar természetes nyelvű utasítást értelmez és az 5 ügynök valamelyikéhez vagy többjéhez irányítja azt. Bizalmi szint alapján modellt választ (Haiku vs. Opus), workflow-kat vezet le és token-költséget nyomon követ. Nincs direkt funkciója — pusztán intelligens útválasztás.",
+    "promptExample": "Keress 5 ingatlanost Debrecenben, küldj nekik emailt, és készíts bevételi riportot",
+    "features": [
+      { "title": "Magyar nyelvfeldolgozás", "body": "Szlenget, elírást, ragozást is értelmez — »linkdinezd« = LinkedIn keresés." },
+      { "title": "Multi-step workflow", "body": "Max 3 lépésből álló utasítást lebont és szekvenciálisan hajt végre." },
+      { "title": "Modellválasztás", "body": "Bizalmi szint alapján Haiku (gyors, olcsó) vagy Opus (komplex)." },
+      { "title": "API-költség tracking", "body": "Ügynök és tier szerinti lebontás — napi / heti költség-kimutatás." },
+      { "title": "Parancs-fordítás", "body": "Attila szavait Scout, Manager, Operations, Optimizer, Finance paraméterekre." },
+      { "title": "Bizalmi szint", "body": "0–1 skála: 0.9+ egyértelmű, 0.6–0.89 valószínű, <0.6 visszakérdezés." }
+    ],
+    "terminalScript": [
+      { "type": "user", "text": "Keress 5 ingatlanost és küldj nekik emailt", "ms": 800 },
+      { "type": "cmd",  "text": "claude_route_message confidence=0.92                         0.4s", "ms": 600 },
+      { "type": "cmd",  "text": "workflow=[scout_search, manager_email]                       0.1s", "ms": 300 },
+      { "type": "cmd",  "text": "select_model 'scout_search' confidence=0.92 → Haiku          0.1s", "ms": 200 },
+      { "type": "cmd",  "text": "execute step 1/2: scout_search apify+sheets                  3.5s", "ms": 1200 },
+      { "type": "cmd",  "text": "execute step 2/2: manager_email [5 prospect]                 1.2s", "ms": 900 },
+      { "type": "out",  "text": "", "ms": 200 },
+      { "type": "out",  "text": "Done! Workflow: scout_search → manager_email.", "ms": 400 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "out",  "text": "✓ 5 ingatlan-prospect megkeresve (LinkedIn + Maps)", "ms": 300 },
+      { "type": "out",  "text": "✓ 5 outreach email kiküldve | Cal.com link mellékelve", "ms": 300 },
+      { "type": "out",  "text": "✓ Cost: $0.0012 (Haiku × 2) | Confidence: 0.92", "ms": 300 },
+      { "type": "out",  "text": "", "ms": 100 },
+      { "type": "done", "text": "Workflow teljesítve | orchestrator_workflow_2026_051", "ms": 200 }
+    ]
+  }
+}

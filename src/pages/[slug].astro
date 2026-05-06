@@ -1,0 +1,135 @@
+---
+import AgentLayout from "../layouts/AgentLayout.astro";
+import agentsData from "../data/agents.json";
+
+interface Feature { title: string; body: string; }
+interface TermLine { type: string; text: string; ms: number; }
+interface Agent {
+  slug: string; name: string; role: string; order: number;
+  tagline: string; lede: string; promptExample: string;
+  features: Feature[]; terminalScript: TermLine[];
+}
+
+export async function getStaticPaths() {
+  const agents = agentsData as Record<string, Agent>;
+  return Object.values(agents).map((a) => ({
+    params: { slug: a.slug },
+    props: { agent: a },
+  }));
+}
+
+const { agent } = Astro.props as { agent: Agent };
+
+const repoCmd = "gh repo clone attilanagy23/expert-flow-agents";
+const promptId = `prompt-${agent.slug}`;
+const repoId = `repo-${agent.slug}`;
+const termJson = JSON.stringify(agent.terminalScript);
+---
+
+<AgentLayout
+  agentSlug={agent.slug}
+  title={`${agent.name} — Expert Flow Ügynökök`}
+  description={agent.lede}
+>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      Expert Flow <span class="dot"></span> AI ügynök <span class="dot"></span> v0.1.0
+    </div>
+    <h1 set:html={agent.tagline}></h1>
+    <p class="lede">{agent.lede}</p>
+
+    <div class="cta-stack">
+      <div class="cta-card">
+        <div class="cta-card-head">
+          <span class="num">1. Klónozás</span>
+          <button type="button" class="copy-btn" data-copy={`#${repoId}`}>Másol</button>
+        </div>
+        <code id={repoId} class="cta-code"><span class="hl">{repoCmd}</span></code>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-head">
+          <span class="num">2. Próba prompt</span>
+          <button type="button" class="copy-btn" data-copy={`#${promptId}`}>Másol</button>
+        </div>
+        <code id={promptId} class="cta-code"><span class="hl">{agent.promptExample}</span></code>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── See it in action ────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="label-lg">Lásd működés közben</span>
+  </div>
+  <div class="demo-row">
+    <div class="term-wrap">
+      <div class="term" data-terminal data-script={termJson}>
+        <div class="term-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="term-title">{agent.slug}</span>
+        </div>
+        <div class="term-body"></div>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="art-letter">{agent.name.charAt(0)}</div>
+      <div class="art-name">{agent.name.toUpperCase()}</div>
+      <span class="art-label">{agent.role}</span>
+    </div>
+  </div>
+
+  <!-- ── Features ──────────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="label-lg">Funkciók</span>
+  </div>
+  <div class="g g-feat features-wrap">
+    {agent.features.map((f) => (
+      <article class="feat-cell">
+        <h3 class="feat-eyebrow">{f.title}</h3>
+        <p class="feat-body">{f.body}</p>
+      </article>
+    ))}
+  </div>
+
+  <!-- ── More details ─────────────────────────────────────── -->
+  <button class="more-row" type="button" aria-expanded="false" disabled>
+    <span>További részletek</span>
+    <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    <span style="margin-left: auto; opacity: 0.5;">Hamarosan</span>
+  </button>
+
+</AgentLayout>
+
+<style>
+  /* Per-agent art block — nagy serif italic kezdőbetű + name overlay */
+  .art-letter {
+    position: absolute;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(220px, 38vw, 460px);
+    line-height: 0.84;
+    color: var(--accent);
+    opacity: 0.22;
+    letter-spacing: -0.05em;
+    bottom: -14%;
+    left: -6%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    user-select: none;
+  }
+  .art-name {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--accent);
+    text-transform: uppercase;
+    opacity: 0.85;
+    mix-blend-mode: plus-lighter;
+  }
+  .more-row[disabled] { cursor: default; }
+  .more-row[disabled]:hover { color: var(--text-muted); }
+</style>
