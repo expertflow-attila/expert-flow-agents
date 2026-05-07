@@ -4,15 +4,15 @@
     "name": "Scout",
     "role": "Felderítő",
     "order": 1,
-    "tagline": "Magyar vállalkozókat talál,<br>LinkedIn és Google Maps alapján.",
-    "lede": "Apify, LinkedIn és Google Maps integrációval keresi az egyéni szolgáltatásalapú vállalkozókat: ingatlanközvetítőket, ügyvédeket, fogorvosokat, fotográfusokat és további 20+ szakmát. Valós adatokat gyűjt, Supabase-be menti őket, Google Sheetsbe exportálja automatikusan.",
+    "tagline": "Magyar <em>vállalkozókat</em> talál, LinkedIn és Google Maps alapján.",
+    "lede": "Apify, LinkedIn és Google Maps integrációval keresi az egyéni szolgáltatókat: ingatlanközvetítőket, ügyvédeket, fogorvosokat, fotósokat és további 20+ szakmát. Élő adatokat gyűjt, Supabase-be menti őket, és automatikusan Google Sheets-be exportálja.",
     "promptExample": "Keress 10 ingatlanost Budapesten LinkedIn alapján, ezután scrapeld le az első 3 weboldalt",
     "features": [
       { "title": "Apify LinkedIn keresés", "body": "LinkedIn profilokat talál szakma és hely szerint, valós profil-linkeket nyer ki." },
       { "title": "Google Maps scrape", "body": "Vállalkozások telefonszámát, weboldalát, értékeléseit gyűjti Maps-ből." },
-      { "title": "Weboldal-elemzés", "body": "Playwright-tal betölti az oldalakat, emaileket, telefonokat és fájdalompontokat azonosít." },
-      { "title": "Batch keresés", "body": "10 foglalkozás × hely kombinációt egyszerre, max 50 lead / keresés." },
-      { "title": "Duplikáció szűrés", "body": "Név és cég alapján ellenőrzi, nem menti kétszer ugyanazt a prospectet." },
+      { "title": "Weboldal-elemzés", "body": "Playwright-tal betölti az oldalakat: emaileket, telefonokat kinyer, fájdalompontokat azonosít." },
+      { "title": "Batch keresés", "body": "Max 10 (foglalkozás + hely) job egyszerre fut le, keresésenként max 50 lead." },
+      { "title": "Duplikáció szűrés", "body": "Név és cég alapján ellenőrzi, nem ment el kétszer ugyanolyan prospectet." },
       { "title": "Google Sheets export", "body": "Automatikusan felírja a talált prospecteket a megadott Google Sheetbe." }
     ],
     "terminalScript": [
@@ -29,7 +29,7 @@
       { "type": "out",  "text": "✓ Szabó Márta — SM Real Estate | Pest megye", "ms": 300 },
       { "type": "out",  "text": "✓ Nagy Béla — Béla Ingatlan Kft. | Budapest", "ms": 300 },
       { "type": "out",  "text": "", "ms": 100 },
-      { "type": "done", "text": "Mentve: Google Sheets & Supabase | scout_2026_051", "ms": 200 }
+      { "type": "done", "text": "Mentve: Google Sheets és Supabase | scout_2026_051", "ms": 200 }
     ]
   },
   "manager": {
@@ -37,16 +37,16 @@
     "name": "Manager",
     "role": "Értékesítési vezető",
     "order": 2,
-    "tagline": "Pipeline-t követ, prospecteket<br>visz a fázisok közt.",
-    "lede": "Kezel minden potenciális ügyfelet: kívánság-tól ajánlat-ig, ajánlat-tól megnyert-ig követi a prospecteket. Automatikus lead scoring, email kiküldés (Gmail), Cal.com foglalások, ajánlat-generálás és monitoring — minden a Supabase-ben rögzítve.",
+    "tagline": "<em>Pipeline-t</em> követ, prospecteket léptet a fázisok között.",
+    "lede": "Minden potenciális ügyfelet kezel: érdeklődéstől ajánlatig, ajánlattól megnyert dealig követi a prospecteket. Automatikus lead scoring, email-kiküldés (Gmail), Cal.com-foglalás, ajánlatgenerálás és pipeline-követés — minden a Supabase-ben rögzítve.",
     "promptExample": "Frissítsd Kovács Péter státuszát »interested«-re és készíts személyre szabott ajánlatot az utolsó meeting alapján",
     "features": [
-      { "title": "Pipeline monitor", "body": "10 státuszbeli szakaszban követi a prospecteket, konverziós arányokat mutat." },
+      { "title": "Pipeline monitor", "body": "10 pipeline-fázison követi a prospecteket, fázisonkénti konverziós arányt mutat." },
       { "title": "Lead scoring", "body": "Kontaktadatok, fájdalompontok, szakma-illeszkedés alapján A–F fokozat." },
-      { "title": "Auto email küldés", "body": "Template-ből kimenő, follow-up és outreach emaileket generál Gmaillal." },
-      { "title": "Cal.com foglalás", "body": "Időpontokat foglal az ügyfélnek, nyilvántartja a Google Calendarban." },
-      { "title": "Smart proposal", "body": "Meeting-transzkript alapján HTML ajánlatot generál, személyre szabottan." },
-      { "title": "Revenue előrejelzés", "body": "Deal-érték és konverziós ráta alapján a pipeline értékét becsüli." }
+      { "title": "Email-automatizálás", "body": "Sablonból kimenő follow-up és outreach emaileket generál Gmaillal." },
+      { "title": "Cal.com foglalás", "body": "Az ügyfélnek időpontot foglal, az eseményt rögzíti a Google Calendarban." },
+      { "title": "Smart proposal + PDF", "body": "Meeting-transzkript (Drive) alapján HTML és PDF ajánlatot generál Gmaillal, ClickUp-ban task-ot rögzít." },
+      { "title": "Bevétel-előrejelzés", "body": "Üzletérték és konverziós ráta alapján a pipeline összértékét becsüli." }
     ],
     "terminalScript": [
       { "type": "user", "text": "Frissítsd Kovács Péter státuszát interested-re", "ms": 800 },
@@ -60,7 +60,7 @@
       { "type": "out",  "text": "✓ Lead score: 74/100 (B+) — jó minőségű prospect", "ms": 300 },
       { "type": "out",  "text": "✓ Email küldésre kész | Kit-tag frissítve", "ms": 300 },
       { "type": "out",  "text": "", "ms": 100 },
-      { "type": "done", "text": "Pipeline frissítve | Supabase & Kit szinkronizálva", "ms": 200 }
+      { "type": "done", "text": "Pipeline frissítve | Supabase és Kit szinkronizálva", "ms": 200 }
     ]
   },
   "operations": {
@@ -68,16 +68,16 @@
     "name": "Operations",
     "role": "Operatív koordinátor",
     "order": 3,
-    "tagline": "Pipeline-t futtatja, adatokat<br>szinkronizál hét helyre.",
-    "lede": "Heti, napi és havi riportokat küld (pipeline-trend, foglalkozás-bontás, konverziós tölcsér). Google Sheets-szinkron, Drive mappa-automatizáció, PostHog web-analitika, Kit email-statisztika — 500+ prospect adatot tart naprakészen.",
+    "tagline": "Pipeline-t <em>futtatja</em>, adatokat szinkronizál négy platformra.",
+    "lede": "Heti, napi és havi riportokat küld (pipeline-trend, foglalkozás-bontás, konverziós tölcsér). Google Sheets-szinkron, Drive-mappa automatizáció, PostHog web-analitika, Kit email-statisztika — 500+ prospect adatot tart naprakészen.",
     "promptExample": "Készíts heti riportot és szinkronizáld az adatokat Google Sheetsbe",
     "features": [
       { "title": "Heti / napi / havi riport", "body": "Pipeline-trend, top 8 foglalkozás, legjobb konverziós ráta egy üzenetben." },
       { "title": "Google Sheets szinkron", "body": "Prospect-lista és pipeline-státusz: 500+ sor frissítése automatikusan." },
-      { "title": "Drive mappa-auto", "body": "Minden aktív ügyfélhez létrehoz mappát + összegző dokumentumot." },
-      { "title": "Konverziós tölcsér", "body": "6 fázison áthaladó prospectek száma + lemorzsolódási pont azonosítása." },
+      { "title": "Drive-mappa automatizálás", "body": "Minden aktív ügyfélhez létrehoz mappát + összegző dokumentumot." },
+      { "title": "Konverziós tölcsér", "body": "10 státuszon áthaladó prospectek száma + lemorzsolódási pont azonosítása." },
       { "title": "PostHog analitika", "body": "Oldalmegtekintések, egyedi látogatók, CTA-kattintási arány kimutatása." },
-      { "title": "Kit email-stats", "body": "Feliratkozott emailek, aktív sorozatok, tagek darabszáma." }
+      { "title": "Kit email-statisztika", "body": "Feliratkozók száma, aktív email-sorozatok, tag-ek darabszáma." }
     ],
     "terminalScript": [
       { "type": "user", "text": "Készíts heti riportot és szinkronizáld a Sheetset", "ms": 800 },
@@ -92,24 +92,24 @@
       { "type": "out",  "text": "✓ Top szakma: ingatlan (38% konverzió)", "ms": 300 },
       { "type": "out",  "text": "✓ Web: 2341 view, 187 unique, 4.2% CTA", "ms": 300 },
       { "type": "out",  "text": "", "ms": 100 },
-      { "type": "done", "text": "Riport: ~/expert-flow/weekly-report.md | Sheets & Drive sync", "ms": 200 }
+      { "type": "done", "text": "Riport: ~/expert-flow/weekly-report.md | Sheets és Drive sync", "ms": 200 }
     ]
   },
   "optimizer": {
     "slug": "optimizer",
     "name": "Optimizer",
-    "role": "Kísérletezésvezető",
+    "role": "Kísérletvezető",
     "order": 4,
-    "tagline": "Öt pipeline-t fut A/B-ra,<br>tanulságokat dokumentál.",
-    "lede": "Email copy, landing page, outreach, lead scoring és ajánlat-template-eket optimalizál automatikus kísérletezéssel. PostHog (web), Kit (email), Stripe (conversion) metrikákat figyel, nyerteseket és tanulságokat rögzít az adatbázisba.",
+    "tagline": "Öt pipeline-t <em>futtat</em> A/B-n, tanulságokat dokumentál.",
+    "lede": "Email-copy-t, landing page-et, outreach-szöveget, lead scoring-ot és ajánlatsablonokat optimalizál automatikus kísérletekkel. PostHog (web), Kit (email), Stripe (conversion) metrikákat figyel, nyerteseket és tanulságokat rögzít az adatbázisba.",
     "promptExample": "Futtasd az email copy optimalizálót és mutasd meg az eredményt",
     "features": [
-      { "title": "Email copy A/B teszt", "body": "Különböző szövegeket Kit-metrikák alapján tesztel és kiválasztja a nyertest." },
-      { "title": "Landing page CRO", "body": "PostHog-konverzió alapján headline, CTA, layout iterálása." },
-      { "title": "Outreach optimalizálás", "body": "Megkeresési válaszarány alapján outreach-template finomítása." },
+      { "title": "Email-copy A/B teszt", "body": "Különböző szövegeket Kit-metrikák alapján tesztel és kiválasztja a nyertest." },
+      { "title": "Landing page-konverzió", "body": "PostHog-konverzió alapján headline, CTA, layout iterálása." },
+      { "title": "Outreach A/B teszt", "body": "Cold-email válaszarány alapján 2-4 variant tesztelése, 14 napos ciklus." },
       { "title": "Lead scoring tuner", "body": "Scoring-súlyok dinamikus módosítása megnyert / elvesztett deal-ek alapján." },
-      { "title": "Proposal optimizer", "body": "Ajánlat-template módosítása ajánlatfogadási ráta szerint." },
-      { "title": "Tanulságok dokumentálása", "body": "Minden ciklus után AI-val összegez: eredmény + legfőbb tanulság." }
+      { "title": "Proposal optimizer", "body": "Ajánlat-sablon módosítása ajánlatfogadási ráta szerint." },
+      { "title": "Tanulságok dokumentálása", "body": "Minden ciklus után Claude-dal összegez: eredmény + legfőbb tanulság." }
     ],
     "terminalScript": [
       { "type": "user", "text": "Futtasd az email copy optimalizálót", "ms": 800 },
@@ -119,9 +119,9 @@
       { "type": "out",  "text": "", "ms": 200 },
       { "type": "out",  "text": "Done! Email-optimalizációs ciklus lefutott.", "ms": 400 },
       { "type": "out",  "text": "", "ms": 100 },
-      { "type": "out",  "text": "✓ Variant A (»Közvetlen ajánlat«): 4.2% click rate", "ms": 300 },
-      { "type": "out",  "text": "✓ Variant B (»Személyes ötlet«): 4.7% — NYERTES (+12%)", "ms": 300 },
-      { "type": "out",  "text": "✓ Tanulság: a személyre szabott nyitómondat hatékonyabb", "ms": 300 },
+      { "type": "out",  "text": "✓ Variant A („Közvetlen ajánlat”): 4.2% click rate", "ms": 300 },
+      { "type": "out",  "text": "✓ Variant B („Személyes ötlet”): 4.7% — NYERTES (+12%)", "ms": 300 },
+      { "type": "out",  "text": "✓ Tanulság: a személyre szabott nyitómondat +12% click rate-et hoz", "ms": 300 },
       { "type": "out",  "text": "", "ms": 100 },
       { "type": "done", "text": "Kísérlet #74 lezárva | Tanulságok az auto-research logban", "ms": 200 }
     ]
@@ -131,16 +131,16 @@
     "name": "Finance",
     "role": "Pénzügyi vezető",
     "order": 5,
-    "tagline": "Stripe-számlázást kezel,<br>bevételt nyomon követ.",
-    "lede": "Stripe-integrációval számlákat, előfizetéseket, termékeket és kifizetéseket kezel. Dashboard mutatja az egyenleget, havi bevételt, top ügyfeleket. AI-elemzés javaslatot ad árazásra, churn-megelőzésre és revenue-növelésre.",
+    "tagline": "<em>Stripe-számlázást</em> kezel, bevételt nyomon követ.",
+    "lede": "Stripe-integrációval számlákat, előfizetéseket, termékeket és kifizetéseket kezel. Dashboard mutatja az egyenleget, havi bevételt, top ügyfeleket. Claude-alapú elemzés árazási és churn-megelőzési javaslatot ad, és bevételnövelési taktikákat ajánl.",
     "promptExample": "Készíts számlát Kiss Péternek 250.000 Ft-ról weboldal-készítésért",
     "features": [
-      { "title": "Stripe-számlázás", "body": "Invoice tételek alapján, automatikus email-küldés, fizetési link generálás." },
+      { "title": "Stripe-számlázás", "body": "Számlatételeket generál, fizetési linket küld emailben automatikusan." },
       { "title": "Előfizetés-kezelés", "body": "Havi/éves előfizetés indítás, próbaidőszak, lemondás — MRR tracking." },
-      { "title": "Termék & ár", "body": "Termékek és árak létrehozása, több pénznem és időszak támogatása." },
+      { "title": "Termék és ár", "body": "Termékeket és árakat hoz létre, több pénznemet és időszakot kezel." },
       { "title": "Bevétel-dashboard", "body": "30 napi bevétel, top ügyfelek, nyitott / lejárt számlák, aktív előfizetések." },
-      { "title": "Havi bontás", "body": "6 hónapos trend, havi invoice-szám, konverziós fejlődés vizualizálva." },
-      { "title": "AI pénzügyi elemzés", "body": "Stripe-adatokból árazási és churn-megelőzési javaslat." }
+      { "title": "Havi bontás", "body": "6 hónap trendje, havi számlaszám, fizetett/kiállított arány grafikonon." },
+      { "title": "AI pénzügyi elemzés", "body": "Stripe-adatokból árazási és churn-megelőzési javaslatot ad." }
     ],
     "terminalScript": [
       { "type": "user", "text": "Mutasd a pénzügyi dashboardot", "ms": 800 },
@@ -163,16 +163,16 @@
     "name": "Orchestrator",
     "role": "Igazgató",
     "order": 6,
-    "tagline": "Magyar parancsokat értelmez,<br>az öt ügynököt vezényli.",
-    "lede": "Magyar természetes nyelvű utasítást értelmez és az 5 ügynök valamelyikéhez vagy többjéhez irányítja azt. Bizalmi szint alapján modellt választ (Haiku vs. Opus), workflow-kat vezet le és token-költséget nyomon követ. Nincs direkt funkciója — pusztán intelligens útválasztás.",
+    "tagline": "Magyar parancsokat <em>értelmez</em>, az öt ügynököt vezényli.",
+    "lede": "Magyar természetes nyelvű utasítást értelmez, és egy vagy több ügynökhöz irányítja az 5 közül. Bizalmi szint alapján modellt választ (Haiku vs. Opus), workflow-kat bont le és token-költséget követ. Nem hajt végre lépést — útválasztással hangolja össze az 5 ügynököt.",
     "promptExample": "Keress 5 ingatlanost Debrecenben, küldj nekik emailt, és készíts bevételi riportot",
     "features": [
-      { "title": "Magyar nyelvfeldolgozás", "body": "Szlenget, elírást, ragozást is értelmez — »linkdinezd« = LinkedIn keresés." },
+      { "title": "Magyar nyelvfeldolgozás", "body": "Szlenget, elírást, ragozást is értelmez — „linkdinezd” = LinkedIn-keresés." },
       { "title": "Multi-step workflow", "body": "Max 3 lépésből álló utasítást lebont és szekvenciálisan hajt végre." },
-      { "title": "Modellválasztás", "body": "Bizalmi szint alapján Haiku (gyors, olcsó) vagy Opus (komplex)." },
+      { "title": "Modellválasztás", "body": "Bizalmi szint alapján Haikut (gyors, olcsó) vagy Opust (összetett feladatra) választ." },
       { "title": "API-költség tracking", "body": "Ügynök és tier szerinti lebontás — napi / heti költség-kimutatás." },
-      { "title": "Parancs-fordítás", "body": "Attila szavait Scout, Manager, Operations, Optimizer, Finance paraméterekre." },
-      { "title": "Bizalmi szint", "body": "0–1 skála: 0.9+ egyértelmű, 0.6–0.89 valószínű, <0.6 visszakérdezés." }
+      { "title": "Parancs-fordítás", "body": "Attila szavait Scout, Manager, Operations, Optimizer és Finance paraméterekre fordítja." },
+      { "title": "Visszakérdezés bizonytalanságnál", "body": "Confidence < 0.6 esetén nem hajt végre, hanem udvariasan visszakérdez magyarul." }
     ],
     "terminalScript": [
       { "type": "user", "text": "Keress 5 ingatlanost és küldj nekik emailt", "ms": 800 },
