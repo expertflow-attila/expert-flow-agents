@@ -67,7 +67,18 @@ html, body {
   text-transform: uppercase;
 }
 html { scroll-behavior: smooth; }
-body { min-height: 100dvh; overflow-x: hidden; }
+body {
+  min-height: 100vh;        /* fallback for older Safari */
+  min-height: 100dvh;       /* modern Safari/Chrome — no URL-bar trap */
+  overflow-x: hidden;
+  overscroll-behavior-x: contain;
+}
+
+/* Globális tap-handling — iOS Safari prémium-szint */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;  /* iOS double-tap zoom kikapcs */
+}
 
 /* All typography defaults to uppercase (Hermes feel), but body copy stays normal */
 .normalcase, p, .lede { text-transform: none; letter-spacing: -0.005em; }
@@ -147,6 +158,8 @@ main.shell {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--gutter);
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
 }
 
 .g {
@@ -389,7 +402,9 @@ main.shell {
   border-radius: 2px;
   cursor: pointer;
   text-transform: uppercase;
-  padding: 6px 12px;
+  padding: 11px 14px;
+  min-height: 44px;
+  min-width: 44px;
   transition: color 180ms ease, border-color 180ms ease;
 }
 .cta-card-head .copy-btn:hover { color: var(--accent-strong); border-color: var(--accent); }
@@ -483,7 +498,7 @@ main.shell {
   padding: 18px 20px;
   color: var(--text);
   text-transform: none;
-  height: 380px;
+  height: clamp(280px, 50dvh, 380px);
   overflow: hidden;
   white-space: pre-wrap;
 }
@@ -620,7 +635,10 @@ main.shell {
 
 /* ────────── Footer ────────── */
 
-.foot { font-family: var(--font-mono); }
+.foot {
+  font-family: var(--font-mono);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
 .foot .label-sm.dim { opacity: 0.7; }
 .foot .accent { color: var(--accent); mix-blend-mode: plus-lighter; }
 
@@ -651,8 +669,13 @@ main.shell {
   .hero { padding: 56px 16px 40px; }
   .hero h1 { font-size: clamp(34px, 8vw, 52px); }
 
-  .term-body { height: 320px; font-size: 12px; }
+  .term-body { height: clamp(240px, 45dvh, 320px); font-size: 12px; }
   .art { min-height: 280px; }
+}
+
+@media (max-width: 768px) {
+  .bg-fx-vignette { display: none; }
+  .bg-fx-grain { opacity: 0.025; }
 }
 
 @media (max-width: 540px) {
