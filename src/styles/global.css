@@ -284,33 +284,6 @@ main.shell {
 }
 .socials-row a:hover { opacity: 1; color: var(--accent); }
 
-/* Theme toggle — visual only */
-.theme-toggle {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  width: 44px;
-  height: 22px;
-  border: 1px solid var(--border-strong);
-  background: rgba(255,255,255,0.04);
-  border-radius: 999px;
-  cursor: pointer;
-  margin-top: 4px;
-}
-.theme-toggle .knob {
-  position: absolute;
-  top: 2px; left: 2px;
-  width: 16px; height: 16px;
-  border-radius: 50%;
-  background: var(--text-muted);
-  transition: transform 200ms ease, background 200ms ease;
-}
-.theme-toggle.dark .knob { transform: translateX(0); background: var(--text-muted); }
-.theme-toggle.light .knob { transform: translateX(22px); background: var(--accent); }
-.theme-toggle svg { position: absolute; width: 11px; height: 11px; opacity: 0.4; }
-.theme-toggle svg:first-of-type { left: 5px; }
-.theme-toggle svg:last-of-type { right: 5px; }
-
 /* ────────── Hero ────────── */
 
 .hero {
@@ -570,6 +543,38 @@ main.shell {
   mix-blend-mode: plus-lighter;
 }
 
+/* Per-agent art block — nagy serif italic kezdőbetű + name overlay
+   (előtte index.astro és [slug].astro scoped style-okban duplikálva volt) */
+.art-letter {
+  position: absolute;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(140px, 42vw, 460px);
+  line-height: 0.84;
+  color: var(--accent);
+  opacity: 0.22;
+  letter-spacing: -0.05em;
+  bottom: -8%;
+  left: -4%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  user-select: none;
+}
+.art-name {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  text-transform: uppercase;
+  opacity: 0.85;
+  mix-blend-mode: plus-lighter;
+}
+.more-row[disabled] { cursor: default; }
+.more-row[disabled]:hover { color: var(--text-muted); }
+
 /* ────────── Features grid ────────── */
 
 .features-wrap { border-bottom: 1px solid var(--border-cell); }
@@ -667,23 +672,55 @@ main.shell {
   .g-foot { grid-template-columns: 1fr 1fr; }
 
   .hero { padding: 56px 16px 40px; }
-  .hero h1 { font-size: clamp(34px, 8vw, 52px); }
 
   .term-body { height: clamp(240px, 45dvh, 320px); font-size: 12px; }
   .art { min-height: 280px; }
 }
 
 @media (max-width: 768px) {
+  /* Performance: dobjuk a vignette-t, halkítsuk a grain-t mobilon */
   .bg-fx-vignette { display: none; }
   .bg-fx-grain { opacity: 0.025; }
+
+  /* Tab strip mobil-natív horizontal scroll-snap (Stripe / Linear pattern) */
+  .g-tabs {
+    grid-template-columns: none;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .g-tabs::-webkit-scrollbar { display: none; }
+  .g-tabs .gc-tab {
+    flex: 0 0 44vw;
+    scroll-snap-align: start;
+    min-height: 72px;
+    padding: 14px 16px;
+    border-top: none;
+    border-right: 1px solid var(--border-cell);
+  }
+  .g-tabs .gc-tab.active { scroll-snap-align: center; }
+  .gc-tab .tab-role { font-size: 9px; letter-spacing: 0.12em; }
+
+  /* Hero mobil — text-wrap balance + szűkebb max-width SE-en */
+  .hero { padding: 32px 16px 32px; }
+  .hero h1 {
+    font-size: clamp(28px, 7.6vw, 44px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+  }
+
+  /* Fluid type a többi szövegre */
+  .hero .lede { font-size: clamp(15px, 3.6vw, 17px); }
+  .feat-body  { font-size: clamp(14px, 3.4vw, 16px); }
+  .cta-code   { font-size: clamp(11px, 3vw, 13px); }
 }
 
 @media (max-width: 540px) {
   :root { --gutter: 14px; }
-  .g-tabs { grid-template-columns: repeat(2, 1fr); }
-  .g-tabs .gc { border-right: 1px solid var(--border-cell); }
-  .g-tabs .gc:nth-child(2n) { border-right: none; }
-  .g-tabs .gc:nth-child(n+3) { border-top: 1px solid var(--border-cell); }
 
   .g-feat { grid-template-columns: 1fr; }
   .feat-cell { border-right: none !important; }
@@ -693,6 +730,13 @@ main.shell {
   .g-foot .gc:last-child { border-bottom: none; }
 
   .brand-logo { font-size: 30px; }
+
+  /* Art-letter: csendesebb, kompaktabb mobilon */
+  .art-letter {
+    font-size: clamp(120px, 50vw, 200px);
+    bottom: -6%;
+    opacity: 0.18;
+  }
 }
 
 /* ────────── Accessibility ────────── */
