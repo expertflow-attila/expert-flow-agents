@@ -6,6 +6,7 @@ interface Feature { title: string; body: string; }
 interface TermLine { type: string; text: string; ms: number; }
 interface Agent {
   slug: string; name: string; role: string; order: number;
+  letter: string;
   tagline: string; lede: string; promptExample: string;
   features: Feature[]; terminalScript: TermLine[];
 }
@@ -73,7 +74,7 @@ const termJson = JSON.stringify(agent.terminalScript);
       </div>
     </div>
     <div class="art" aria-hidden="true">
-      <div class="art-letter">{agent.name.charAt(0)}</div>
+      <div class="art-letter">{agent.letter}</div>
       <div class="art-name">{agent.name.toUpperCase()}</div>
       <span class="art-label">{agent.role}</span>
     </div>
@@ -93,10 +94,10 @@ const termJson = JSON.stringify(agent.terminalScript);
   </div>
 
   <!-- ── More details ─────────────────────────────────────── -->
-  <button class="more-row" type="button" aria-expanded="false" disabled>
+  <button class="more-row" type="button" aria-expanded="false" aria-disabled="true">
     <span>További részletek</span>
     <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    <span style="margin-left: auto; opacity: 0.5;">Hamarosan</span>
+    <span class="more-row__hint">Hamarosan</span>
   </button>
 
 </AgentLayout>

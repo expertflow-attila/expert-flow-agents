@@ -238,6 +238,7 @@ main.shell {
   font-weight: 400;
   display: block;
 }
+.brand-logo--sm { font-size: 26px; }
 
 /* Header label small text */
 .label-sm {
@@ -572,8 +573,9 @@ main.shell {
   opacity: 0.85;
   mix-blend-mode: plus-lighter;
 }
-.more-row[disabled] { cursor: default; }
-.more-row[disabled]:hover { color: var(--text-muted); }
+.more-row[aria-disabled="true"] { cursor: default; opacity: 0.85; }
+.more-row[aria-disabled="true"]:hover { color: var(--text-muted); }
+.more-row__hint { margin-left: auto; opacity: 0.5; }
 
 /* ────────── Features grid ────────── */
 
@@ -672,6 +674,7 @@ main.shell {
   .g-foot { grid-template-columns: 1fr 1fr; }
 
   .hero { padding: 56px 16px 40px; }
+  .hero h1 { font-size: clamp(34px, 5.5vw, 56px); }
 
   .term-body { height: clamp(240px, 45dvh, 320px); font-size: 12px; }
   .art { min-height: 280px; }
@@ -693,7 +696,7 @@ main.shell {
     overscroll-behavior-x: contain;
   }
   .g-tabs::-webkit-scrollbar { display: none; }
-  .g-tabs .gc-tab {
+  .g-tabs .gc.gc-tab {
     flex: 0 0 44vw;
     scroll-snap-align: start;
     min-height: 72px;
@@ -701,7 +704,7 @@ main.shell {
     border-top: none;
     border-right: 1px solid var(--border-cell);
   }
-  .g-tabs .gc-tab.active { scroll-snap-align: center; }
+  .g-tabs .gc.gc-tab.active { scroll-snap-align: center; }
   .gc-tab .tab-role { font-size: 9px; letter-spacing: 0.12em; }
 
   /* Hero mobil — text-wrap balance + szűkebb max-width SE-en */

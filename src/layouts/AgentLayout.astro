@@ -24,6 +24,7 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={`https://expert-flow-agents.vercel.app/${agentSlug}`} />
   </head>
   <body>
     <a href="#main" class="skip-link">Ugrás a tartalomhoz</a>
@@ -37,7 +38,7 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
 
       <!-- ── Header (desktop) ────────────────────────────────────── -->
       <header>
-        <div class="g g-header" style="display: grid;">
+        <div class="g g-header">
           <a href="/orchestrator" class="gc gc-link" aria-label="Expert Flow Ügynökök — főoldal">
             <span class="brand-logo">
               <b>Expert</b><b>Flow</b>
@@ -65,13 +66,14 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
         <!-- Mobile bar -->
         <div class="mobile-bar">
           <a href="/orchestrator" aria-label="Főoldal">
-            <span class="brand-logo" style="font-size: 26px;">
+            <span class="brand-logo brand-logo--sm">
               <b>Expert</b><b>Flow</b>
             </span>
           </a>
         </div>
 
         <!-- ── Agent tab strip ───────────────────────────────────── -->
+        <nav aria-label="Ügynökök">
         <div class="g g-tabs">
           {agentList.map((a) => (
             <a
@@ -84,12 +86,13 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
             </a>
           ))}
         </div>
+        </nav>
       </header>
 
       <slot />
 
       <!-- ── Footer ───────────────────────────────────────────── -->
-      <footer class="g g-foot foot" style="margin-top: 0;">
+      <footer class="g g-foot foot">
         <div class="gc">
           <span class="label-sm">Expert Flow Agents</span>
           <span class="label-sm accent">v0.1.0</span>
