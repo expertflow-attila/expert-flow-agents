@@ -60,14 +60,6 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
               </a>
             </div>
           </div>
-          <div class="gc">
-            <span class="label-sm">Téma</span>
-            <button type="button" class="theme-toggle dark" aria-label="Téma váltás (vizuális)" data-theme-toggle>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-              <span class="knob"></span>
-            </button>
-          </div>
         </div>
 
         <!-- Mobile bar -->
@@ -77,11 +69,6 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
               <b>Expert</b><b>Flow</b>
             </span>
           </a>
-          <button type="button" class="theme-toggle dark" aria-label="Téma váltás" data-theme-toggle>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            <span class="knob"></span>
-          </button>
         </div>
 
         <!-- ── Agent tab strip ───────────────────────────────────── -->
@@ -137,14 +124,6 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
           } catch (e) {
             console.error("Másolás sikertelen:", e);
           }
-        });
-      });
-
-      // Theme toggle (visual only — flips knob position)
-      document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          btn.classList.toggle("dark");
-          btn.classList.toggle("light");
         });
       });
 

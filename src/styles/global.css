@@ -123,7 +123,7 @@ a { color: inherit; text-decoration: none; }
   position: fixed; inset: 0;
   pointer-events: none;
   background: radial-gradient(ellipse 800px 600px at 0% 0%, var(--accent-glow) 0%, rgba(0,0,0,0) 60%);
-  opacity: 0.5;
+  opacity: 0.22;
   mix-blend-mode: lighten;
   z-index: 3;
   transition: background 600ms ease;
@@ -154,7 +154,7 @@ main.shell {
   border-top: 1px solid var(--border-cell);
   border-bottom: 1px solid var(--border-cell);
 }
-.g-header { grid-template-columns: 1.4fr 1fr 1fr 1fr 0.7fr; }
+.g-header { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
 .g-tabs   { grid-template-columns: repeat(6, 1fr); }
 .g-feat   { grid-template-columns: repeat(3, 1fr); }
 .g-foot   { grid-template-columns: 1fr 1fr 1fr 1fr; }
@@ -306,7 +306,7 @@ main.shell {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 96px 24px 64px;
+  padding: 120px 24px 96px;
   gap: 22px;
 }
 
@@ -336,7 +336,8 @@ main.shell {
   letter-spacing: -0.025em;
   text-transform: uppercase;
   color: var(--text);
-  max-width: 14ch;
+  max-width: 28ch;
+  text-wrap: balance;
   margin: 0;
   mix-blend-mode: plus-lighter;
 }
@@ -384,13 +385,14 @@ main.shell {
   letter-spacing: 0.16em;
   color: var(--text-muted);
   background: transparent;
-  border: none;
+  border: 1px solid var(--border-cell);
+  border-radius: 2px;
   cursor: pointer;
   text-transform: uppercase;
-  padding: 4px 6px;
-  transition: color 180ms ease;
+  padding: 6px 12px;
+  transition: color 180ms ease, border-color 180ms ease;
 }
-.cta-card-head .copy-btn:hover { color: var(--accent-strong); }
+.cta-card-head .copy-btn:hover { color: var(--accent-strong); border-color: var(--accent); }
 .cta-card-head .copy-btn.copied { color: var(--accent); }
 
 .cta-code {
@@ -402,7 +404,8 @@ main.shell {
   padding: 12px 14px;
   text-align: left;
   white-space: pre-wrap;
-  word-break: break-all;
+  word-break: normal;
+  overflow-wrap: anywhere;
   color: var(--text);
   text-transform: none;
 }
@@ -460,10 +463,10 @@ main.shell {
 .term-bar .dots span {
   width: 8px; height: 8px;
   border-radius: 50%;
-  background: var(--accent);
-  mix-blend-mode: plus-lighter;
+  background: var(--text-dim);
+  opacity: 0.85;
 }
-.term-bar .dots span:nth-child(2) { opacity: 0.6; }
+.term-bar .dots span:nth-child(2) { opacity: 0.55; }
 .term-bar .dots span:nth-child(3) { opacity: 0.3; }
 .term-bar .term-title {
   font-family: var(--font-mono);
