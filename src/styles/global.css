@@ -623,6 +623,25 @@ main.shell {
 .more-row[aria-disabled="true"]:hover { color: var(--text-muted); }
 .more-row__hint { margin-left: auto; opacity: 0.5; }
 
+/* Per-agent SVG art motif — overlay on art block, currentColor via accent */
+.art-motif {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(140px, 25vw, 240px);
+  height: auto;
+  color: var(--accent);
+  opacity: 0.42;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: plus-lighter;
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+}
+.art:hover .art-motif {
+  opacity: 0.55;
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
 /* ────────── Features grid ────────── */
 
 .features-wrap { border-bottom: 1px solid var(--border-cell); }
@@ -786,6 +805,10 @@ main.shell {
     font-size: clamp(120px, 50vw, 200px);
     bottom: -6%;
     opacity: 0.18;
+  }
+  .art-motif {
+    width: clamp(100px, 30vw, 160px);
+    opacity: 0.36;
   }
 }
 
