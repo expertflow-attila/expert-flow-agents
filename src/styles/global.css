@@ -200,9 +200,10 @@ main.shell {
   background: var(--accent);
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--t-mid) var(--ease);
+  clip-path: inset(0 100% 0 0);
+  transition: opacity var(--t-mid) var(--ease), clip-path var(--t-mid) var(--ease);
 }
-.gc-link:hover::after { opacity: 0.06; }
+.gc-link:hover::after { opacity: 0.07; clip-path: inset(0 0 0 0); }
 
 /* Active tab state */
 .gc-tab.active::before {
@@ -359,7 +360,7 @@ main.shell {
   max-width: 520px;
   margin-top: 20px;
 }
-.cta-card { display: flex; flex-direction: column; gap: 8px; }
+.cta-card { display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 8px; }
 .cta-card-head {
   display: flex;
   align-items: center;
@@ -389,6 +390,45 @@ main.shell {
 }
 .cta-card-head .copy-btn:hover { color: var(--accent-strong); border-color: var(--accent); }
 .cta-card-head .copy-btn.copied { color: var(--accent); }
+
+/* ────────── Liquid-glass utility (C8 — selective premium polish) ──────────
+   Apply ONLY to sans/mono utility elements (.cta-card-head, .copy-btn).
+   NEVER to .hero h1 or .label-lg (serif italic — blur kills thin strokes). */
+
+@supports (backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px)) {
+  .liquid-glass {
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(4px) saturate(120%);
+    -webkit-backdrop-filter: blur(4px) saturate(120%);
+    border: 1px solid var(--border-cell);
+    border-image: linear-gradient(135deg,
+      var(--accent-soft) 0%, transparent 60%) 1;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+}
+@supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .liquid-glass {
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border-cell);
+  }
+}
+@media (max-width: 768px) {
+  /* Mobile: drop backdrop-filter (iOS Safari GPU cost) — solid fallback */
+  .liquid-glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-elev-2);
+    border-image: none;
+    border: 1px solid var(--border-cell);
+  }
+}
+
+/* Apply liquid-glass to copy-btn (desktop only via the utility query above) */
+.cta-card-head .copy-btn {
+  /* keep existing properties; .liquid-glass class layered on top */
+}
 
 .cta-code {
   font-family: var(--font-mono);
@@ -601,9 +641,10 @@ main.shell {
   background: var(--accent);
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--t-mid) var(--ease);
+  clip-path: inset(0 100% 0 0);
+  transition: opacity var(--t-mid) var(--ease), clip-path var(--t-mid) var(--ease);
 }
-.feat-cell:hover::after { opacity: 0.04; }
+.feat-cell:hover::after { opacity: 0.05; clip-path: inset(0 0 0 0); }
 
 .feat-eyebrow {
   font-family: var(--font-mono);
