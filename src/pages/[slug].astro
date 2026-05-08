@@ -74,7 +74,7 @@ const termJson = JSON.stringify(agent.terminalScript);
       </div>
     </div>
     <div class="art reveal" aria-hidden="true">
-      <img class="art-motif" src={`/agent-art/${agent.slug}.svg`} alt="" loading="lazy" decoding="async" />
+      <span class="art-motif" style={`--motif: url(/agent-art/${agent.slug}.svg)`}></span>
       <div class="art-letter">{agent.letter}</div>
       <div class="art-name">{agent.name.toUpperCase()}</div>
       <span class="art-label">{agent.role}</span>

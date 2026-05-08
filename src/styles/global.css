@@ -623,14 +623,19 @@ main.shell {
 .more-row[aria-disabled="true"]:hover { color: var(--text-muted); }
 .more-row__hint { margin-left: auto; opacity: 0.5; }
 
-/* Per-agent SVG art motif — overlay on art block, currentColor via accent */
+/* Per-agent SVG art motif — CSS mask trükk (var(--accent) átszáll, mert
+   az <img src=svg> NEM örökli a host page color-t — cross-document boundary).
+   Mask-szal a SVG render-alpha-ja vezérli az átláthatóságot, a base color
+   solid var(--accent), így minden SVG ténylegesen accent-szín. */
 .art-motif {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: clamp(140px, 25vw, 240px);
-  height: auto;
-  color: var(--accent);
+  aspect-ratio: 1 / 1;
+  background-color: var(--accent);
+  -webkit-mask: var(--motif) center / contain no-repeat;
+          mask: var(--motif) center / contain no-repeat;
   opacity: 0.42;
   pointer-events: none;
   user-select: none;
@@ -812,14 +817,16 @@ main.shell {
   }
 }
 
-/* ────────── Reveal motion (C10 — IntersectionObserver-driven) ────────── */
+/* ────────── Reveal motion (C10 — JS-gated, no FOUC on JS-off) ──────────
+   .js class is set inline by AgentLayout's first-paint script. If JS is
+   blocked, .reveal styles never apply → content is default-visible. */
 
-.reveal {
+.js .reveal {
   opacity: 0;
   transform: translateY(12px);
   transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
 }
-.reveal.in {
+.js .reveal.in {
   opacity: 1;
   transform: translateY(0);
 }
@@ -839,5 +846,5 @@ main.shell {
     transition-duration: 0.01ms !important;
   }
   .blink { animation: none; opacity: 1; }
-  .reveal { opacity: 1 !important; transform: none !important; }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
 }

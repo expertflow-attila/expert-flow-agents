@@ -211,7 +211,7 @@
     "role": "Operatív koordinátor",
     "order": 3,
     "letter": "P",
-    "tagline": "Heti <em>riportot</em> ad, négy felé szinkronizál.",
+    "tagline": "Heti <em>riportot</em> ad, négyfelé szinkronizál.",
     "lede": "500+ prospect adatát tartja naprakészen Sheets, Drive, PostHog és Kit között. Heti, napi és havi pipeline-trend.",
     "promptExample": "Készíts heti riportot és szinkronizáld az adatokat Google Sheetsbe",
     "features": [
