@@ -130,6 +130,17 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
         });
       });
 
+      // Reveal motion — IntersectionObserver fade-up + stagger (C10)
+      const revealIO = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            revealIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+      document.querySelectorAll<HTMLElement>(".reveal").forEach((el) => revealIO.observe(el));
+
       // Animated terminal — type out lines one by one based on data-script
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document.querySelectorAll<HTMLElement>("[data-terminal]").forEach((term) => {

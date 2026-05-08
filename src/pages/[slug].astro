@@ -35,13 +35,13 @@ const termJson = JSON.stringify(agent.terminalScript);
 
   <!-- ── Hero ──────────────────────────────────────────────────── -->
   <section class="hero">
-    <div class="hero-eyebrow">
+    <div class="hero-eyebrow reveal">
       Expert Flow <span class="dot"></span> AI ügynök <span class="dot"></span> v0.1.0
     </div>
-    <h1 set:html={agent.tagline}></h1>
-    <p class="lede">{agent.lede}</p>
+    <h1 class="reveal" set:html={agent.tagline}></h1>
+    <p class="lede reveal">{agent.lede}</p>
 
-    <div class="cta-stack">
+    <div class="cta-stack reveal">
       <div class="cta-card liquid-glass">
         <div class="cta-card-head">
           <span class="num">1. Klónozás</span>
@@ -60,7 +60,7 @@ const termJson = JSON.stringify(agent.terminalScript);
   </section>
 
   <!-- ── See it in action ────────────────────────────────────── -->
-  <div class="section-head">
+  <div class="section-head reveal">
     <span class="label-lg">Lásd működés közben</span>
   </div>
   <div class="demo-row">
@@ -73,7 +73,7 @@ const termJson = JSON.stringify(agent.terminalScript);
         <div class="term-body"></div>
       </div>
     </div>
-    <div class="art" aria-hidden="true">
+    <div class="art reveal" aria-hidden="true">
       <img class="art-motif" src={`/agent-art/${agent.slug}.svg`} alt="" loading="lazy" decoding="async" />
       <div class="art-letter">{agent.letter}</div>
       <div class="art-name">{agent.name.toUpperCase()}</div>
@@ -82,12 +82,12 @@ const termJson = JSON.stringify(agent.terminalScript);
   </div>
 
   <!-- ── Features ──────────────────────────────────────────── -->
-  <div class="section-head">
+  <div class="section-head reveal">
     <span class="label-lg">Funkciók</span>
   </div>
   <div class="g g-feat features-wrap">
-    {agent.features.map((f) => (
-      <article class="feat-cell">
+    {agent.features.map((f, idx) => (
+      <article class="feat-cell reveal" style={`transition-delay: ${idx * 60}ms`}>
         <h3 class="feat-eyebrow">{f.title}</h3>
         <p class="feat-body">{f.body}</p>
       </article>
