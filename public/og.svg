@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow" cx="0%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#b9a7e0" stop-opacity="0.28"/>
+      <stop offset="50%" stop-color="#b9a7e0" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#b9a7e0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="100%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#b9a7e0" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#b9a7e0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0c"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <line x1="0" y1="100" x2="1200" y2="100" stroke="#232327" stroke-width="1"/>
+  <line x1="0" y1="528" x2="1200" y2="528" stroke="#232327" stroke-width="1"/>
+
+  <circle cx="80" cy="74" r="4" fill="#b9a7e0"/>
+  <text x="100" y="79" font-family="ui-monospace,Menlo,monospace" font-size="14" letter-spacing="3.5" fill="#b9a7e0">EXPERT FLOW · AI ÜGYNÖKÖK · v0.1.0</text>
+
+  <text x="80" y="252" font-family="-apple-system,sans-serif" font-weight="800" font-size="84" letter-spacing="-2.5" fill="#fafafa">HAT AI ÜGYNÖK,</text>
+  <text x="80" y="348" font-family="-apple-system,sans-serif" font-weight="800" font-size="84" letter-spacing="-2.5" fill="#fafafa">EGY HAVI <tspan font-family="Georgia,serif" font-weight="400" font-style="italic" fill="#cdb9eb">átalány</tspan>.</text>
+
+  <text x="80" y="432" font-family="-apple-system,sans-serif" font-size="22" fill="#a1a1aa">Scout · Manager · Operations · Optimizer · Finance · Orchestrator</text>
+  <text x="80" y="462" font-family="-apple-system,sans-serif" font-size="22" fill="#a1a1aa">Magyar nyelvű AI-csapat az ügyfélszerzéstől a számlázásig.</text>
+
+  <text x="80" y="588" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="3" fill="#8b8b94">EXPERT-FLOW-AGENTS.VERCEL.APP</text>
+  <text x="1120" y="588" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="3" fill="#b9a7e0">EXPERTFLOW.HU</text>
+</svg>

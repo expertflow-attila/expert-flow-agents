@@ -25,6 +25,24 @@ const repoCmd = "gh repo clone expertflow-attila/expert-flow-agents";
 const promptId = `prompt-${agent.slug}`;
 const repoId = `repo-${agent.slug}`;
 const termJson = JSON.stringify(agent.terminalScript);
+
+const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "https://expert-flow-agents.vercel.app";
+const appJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": `${agent.name} — Expert Flow ${agent.role}`,
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": `${siteOrigin}/${agent.slug}`,
+  "description": agent.lede,
+  "inLanguage": "hu",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "HUF",
+    "availability": "https://schema.org/PreOrder"
+  }
+};
 ---
 
 <AgentLayout
@@ -95,6 +113,8 @@ const termJson = JSON.stringify(agent.terminalScript);
   </div>
 
   <!-- ── More details ─────────────────────────────────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify(appJsonLd)} />
+
   <button class="more-row" type="button" aria-expanded="false" aria-disabled="true">
     <span>További részletek</span>
     <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>

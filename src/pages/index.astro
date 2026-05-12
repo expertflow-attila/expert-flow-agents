@@ -9,6 +9,18 @@ const repoCmd = "gh repo clone expertflow-attila/expert-flow-agents";
 const promptId = "prompt-orchestrator";
 const repoId = "repo-orchestrator";
 const termJson = JSON.stringify(agent.terminalScript);
+
+const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "https://expert-flow-agents.vercel.app";
+const appJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Orchestrator — Expert Flow Igazgató",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": `${siteOrigin}/orchestrator`,
+  "description": agent.lede,
+  "inLanguage": "hu"
+};
 ---
 
 <AgentLayout
@@ -70,6 +82,8 @@ const termJson = JSON.stringify(agent.terminalScript);
       </article>
     ))}
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(appJsonLd)} />
 
   <button class="more-row" type="button" aria-expanded="false" aria-disabled="true">
     <span>További részletek</span>

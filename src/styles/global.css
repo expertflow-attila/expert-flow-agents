@@ -175,7 +175,7 @@ main.shell {
 .g-header { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
 .g-tabs   { grid-template-columns: repeat(6, 1fr); }
 .g-feat   { grid-template-columns: repeat(3, 1fr); }
-.g-foot   { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.g-foot   { grid-template-columns: 1.2fr 1fr 1fr; }
 
 .gc {
   position: relative;
@@ -221,10 +221,35 @@ main.shell {
   display: none;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 18px;
+  padding: 14px 18px;
   border: 1px solid var(--border-cell);
   border-radius: 0;
+  gap: 12px;
 }
+.mobile-bar-brand { display: flex; align-items: center; min-height: 44px; }
+
+.mobile-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.mobile-nav a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  opacity: 0.7;
+  transition: opacity 180ms ease, color 180ms ease, border-color 180ms ease;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 8px;
+}
+.mobile-nav a:hover { opacity: 1; color: var(--accent); }
+.mobile-nav a:focus-visible { border-color: var(--accent); opacity: 1; }
 
 /* ────────── Header brand logo ────────── */
 
