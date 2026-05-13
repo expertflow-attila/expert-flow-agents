@@ -18,7 +18,10 @@ const canonical = `${siteOrigin}/${agentSlug}`;
 // Fallback a sitewide og.png-re ha valamiért nincs per-agent verzió.
 const ogImage = `${siteOrigin}/og/${agentSlug}.png`;
 
-const agentName = agentList.find((a) => a.slug === agentSlug)?.name ?? "Expert Flow Ügynökök";
+const currentAgent = agentList.find((a) => a.slug === agentSlug);
+const agentName = currentAgent?.name ?? "Expert Flow Ügynökök";
+const agentRole = currentAgent?.role ?? "Hat AI ügynök";
+const ogImageAlt = `${agentName} — ${agentRole}`;
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -72,13 +75,14 @@ const breadcrumbJsonLd = {
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Expert Flow Ügynökök — hat AI ügynök" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
