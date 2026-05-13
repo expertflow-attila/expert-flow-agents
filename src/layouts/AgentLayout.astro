@@ -14,7 +14,7 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
 
 const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "https://expert-flow-agents.vercel.app";
 const canonical = `${siteOrigin}/${agentSlug}`;
-const ogImage = `${siteOrigin}/og.svg`;
+const ogImage = `${siteOrigin}/og.png`;
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -56,6 +56,7 @@ const orgJsonLd = {
     <meta property="og:locale" content="hu_HU" />
     <meta property="og:site_name" content="Expert Flow Ügynökök" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Expert Flow Ügynökök — hat AI ügynök" />
