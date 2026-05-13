@@ -4,7 +4,8 @@
    Per-agent accent override [data-agent="..."] body attribútumon.
    ───────────────────────────────────────────────────────────── */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");
+/* NOTE: Google Fonts are loaded via <link rel="preconnect/preload/stylesheet"> in AgentLayout.astro
+   for better render performance (no CSS @import render-blocking chain). */
 
 :root {
   color-scheme: dark;

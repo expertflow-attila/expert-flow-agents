@@ -5,10 +5,15 @@ export default defineConfig({
   site: "https://expert-flow-agents.vercel.app",
   trailingSlash: "ignore",
   build: { format: "directory" },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
   integrations: [
     sitemap({
       changefreq: "monthly",
       priority: 0.7,
+      lastmod: new Date(),
       i18n: { defaultLocale: "hu", locales: { hu: "hu-HU" } },
     }),
   ],
