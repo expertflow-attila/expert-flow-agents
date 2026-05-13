@@ -14,17 +14,30 @@ const agentList = Object.values(agents as Record<string, any>).sort((a, b) => a.
 
 const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "https://expert-flow-agents.vercel.app";
 const canonical = `${siteOrigin}/${agentSlug}`;
-const ogImage = `${siteOrigin}/og.png`;
+// Per-agent OG kártyák a public/og/{slug}.png-ben (1200×630, accent-color glow + name + tagline).
+// Fallback a sitewide og.png-re ha valamiért nincs per-agent verzió.
+const ogImage = `${siteOrigin}/og/${agentSlug}.png`;
+
+const agentName = agentList.find((a) => a.slug === agentSlug)?.name ?? "Expert Flow Ügynökök";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Expert Flow",
   "url": "https://expertflow.hu",
-  "logo": ogImage,
+  "logo": `${siteOrigin}/og.png`,
   "sameAs": [
     "https://github.com/expertflow-attila",
     "https://github.com/Expert-Flow"
+  ]
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Expert Flow Ügynökök", "item": siteOrigin },
+    { "@type": "ListItem", "position": 2, "name": agentName, "item": canonical }
   ]
 };
 ---
@@ -70,8 +83,9 @@ const orgJsonLd = {
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Structured data: Organization (sitewide) -->
+    <!-- Structured data: Organization (sitewide) + BreadcrumbList -->
     <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
 
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>

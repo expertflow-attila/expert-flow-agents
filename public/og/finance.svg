@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="0.85">
+      <stop offset="0%" stop-color="#a8d8b8" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#a8d8b8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="1" cy="1" r="0.7">
+      <stop offset="0%" stop-color="#a8d8b8" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#a8d8b8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0c"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+  <text x="72" y="92" font-family="JetBrains Mono, ui-monospace, monospace" font-size="20" letter-spacing="3.6" fill="#a1a1aa">EXPERT FLOW ÜGYNÖKÖK · PÉNZÜGYI VEZETŐ</text>
+  <text x="72" y="170" font-family="Georgia, serif" font-style="italic" font-size="120" fill="#bce4ca" letter-spacing="-2">Finance</text>
+  <text x="72" y="310" font-family="Georgia, serif" font-size="62" fill="#fafafa"><tspan font-style="italic" fill="#bce4ca">Stripe-on</tspan> számláz, bevételt riportol.</text>
+  <line x1="72" y1="500" x2="170" y2="500" stroke="#a8d8b8" stroke-width="3"/>
+  <text x="72" y="560" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" letter-spacing="2.4" fill="#a1a1aa">/FINANCE</text>
+  <text x="1128" y="595" font-family="JetBrains Mono, ui-monospace, monospace" font-size="16" letter-spacing="3" fill="#a8d8b8" text-anchor="end">EXPERT-FLOW-AGENTS.VERCEL.APP</text>
+</svg>
